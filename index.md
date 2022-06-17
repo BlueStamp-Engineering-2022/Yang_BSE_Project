@@ -10,7 +10,7 @@ A robot arm made working using servos and a arduino.
 # Starter Project
   
 
-My First Project was an Ardruno Project which uses tilt sensors to activate a servo which spins to a 90 degree angle when the tilt sensor is activated. It was interesting as I learned how a tilt sensor worked and how it uses a conductive material which moves bases on gravity to complete a curcit to sends a signal. I also breadedboarded and soldered. I also learn the documentation for the servo.
+My First Project was an Ardruno Project which uses tilt sensors to activate a servo which spins to a 90 degree angle when the tilt sensor is activated. It was interesting as I learned how a tilt sensor worked and how it uses a conductive material which moves bases on gravity to complete a circuit to sends a signal. I also breadedboarded and soldered. I also learn the documentation for the servo.
 
 [![First Milestone](https://i3.ytimg.com/vi/Dk8wo_IOyVo/maxresdefault.jpg)](https://www.youtube.com/watch?v=Dk8wo_IOyVo "Starter Project")
 
