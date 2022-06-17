@@ -1,5 +1,5 @@
 ﻿# Robot Arm Project
-A robot arm made working using servos and a arduino.
+A robot arm made using servos and a arduino.
 
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
