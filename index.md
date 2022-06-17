@@ -1,5 +1,5 @@
 ﻿# Robot Arm Project
-A robot arm made working using servos and a ardrino.
+A robot arm made working using servos and a arduino.
 
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
@@ -10,7 +10,7 @@ A robot arm made working using servos and a ardrino.
 # Starter Project
   
 
-My First Project was a Ardrino Project which uses tilt sensors to activate a servo which spins to a 90 degree angle when the tilt sensor is activated. It was interesting as I learned how a tilt sensor worked and how it uses a conductive material to complete a curcit to send a signal  
+My First Project was an Ardruno Project which uses tilt sensors to activate a servo which spins to a 90 degree angle when the tilt sensor is activated. It was interesting as I learned how a tilt sensor worked and how it uses a conductive material which moves bases on gravity to complete a curcit to sends a signal. I also breadedboarded and soldered. I also learn the documentation for the servo.
 
 [![First Milestone](https://i3.ytimg.com/vi/Dk8wo_IOyVo/maxresdefault.jpg)](https://www.youtube.com/watch?v=Dk8wo_IOyVo "Starter Project")
 
