@@ -1,4 +1,5 @@
 
+
 import java.io.*;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -7,19 +8,20 @@ import javax.sound.midi.*;
 
 public class App {
 
-    static Scanner in = new Scanner(System.in);
-    static String[] files = {
+    static Scanner in = new Scanner(System.in);// User input from input stream
+    static String[] files = {// not used anymore
             "/home/pi/Desktop/sing/target/off.sh",
             "/home/pi/Desktop/sing/target/on.sh"
     };
-    static String music = "/home/pi/Desktop/sing/songs/";
-    static String mdir = "/home/pi/Desktop/sing/songs/";
-    static String com = "/home/pi/Desktop/sing/target/compile.sh";
-    static String sonNam;
+    static String music = "/home/pi/Desktop/sing/songs/";// File Path for music file
+    static String mdir = "/home/pi/Desktop/sing/songs/";// File Path of Songs directory
+    static String com = "/home/pi/Desktop/sing/target/compile.sh";// Not used anymore
+    static String sonNam; // Name of song file
     public static final int NOTE_ON = 0x90;
     public static final int NOTE_OFF = 0x80;
-    static Instrument instruments[];
 
+
+    static Instrument instruments[];
     static boolean settings = false;
     public static final String[] NOTE_NAMES = {
             "C",
@@ -51,8 +53,7 @@ public class App {
     };
 
     public static void main(String[] args) throws Exception {
-        // setReset("0");
-        // File ndas=writeCommand(6,0);
+        // Creates/Checks settings file 
         File settingsFILE = new File("settings.txt");
         if (settingsFILE.createNewFile()) {
             System.out.println("File created: " + settingsFILE.getName());
@@ -60,6 +61,7 @@ public class App {
             System.out.println("Found settings file.");
 
         }
+        //Takes Input Parameters
         if (args.length == 1) {
             music += args[0].trim() + ".mid";
         } else if (args.length == 2) {
@@ -116,17 +118,17 @@ public class App {
             }
 
         }
-        System.out.println(music);
-        writeTOGPIO(10);
+        //Sets GPIO to 63 (default )
+        writeTOGPIO(63);
         Synthesizer synthesizer = MidiSystem.getSynthesizer();
         Soundbank sb = synthesizer.getDefaultSoundbank();
-
         Sequence sequence = MidiSystem.getSequence(new File(music));
         instruments = sb.getInstruments();
+        play(); // MEATHOD 
+        /* // READING DATA
         for (Instrument i : instruments)
             System.out.println(i);
 
-        play();
         int trackNumber = 0;
 
         for (Track track : sequence.getTracks()) {
@@ -172,14 +174,19 @@ public class App {
             }
 
             System.out.println();
-        }
+        }*/
         in.close();
 
     }
 
+    /**
+     * @throws Exception
+     * Plays music from input
+     */
     public static void play() throws Exception {
-        String[] cmd = { "hello" };
-        toggle(cmd);
+        
+        /*String[] cmd = { "hello" };
+        toggle(cmd);*/
         Sequencer sequencer = MidiSystem.getSequencer(); // Get the default Sequencer
         if (sequencer == null) {
             System.err.println("Sequencer device not supported");
@@ -191,7 +198,7 @@ public class App {
         Sequence sequence = MidiSystem.getSequence(new File(music));
 
         sequencer.setSequence(sequence); // load it into sequencer
-
+        //Prints tracks
         for (Track track : sequence.getTracks()) {
             int num = 0;
             while(! (track.get(num).getMessage() instanceof ShortMessage)){
@@ -207,17 +214,15 @@ public class App {
             System.out.print("@" + event.getTick() + " ");
             MidiMessage message = event.getMessage();
             if (message instanceof ShortMessage) {
-                boolean isPrecussion = false;
                 ShortMessage sm = (ShortMessage) message;
-                int channel = sm.getChannel() + 1;
                 System.out.println("Channel: " + sm.getChannel() + " ");
                 
             }
         }
-        ArrayList<Long> timestamps = new ArrayList<Long>();
-        ArrayList<MidiEvent> events = new ArrayList<MidiEvent>();
-        int max = Integer.MIN_VALUE;
-        int min = Integer.MAX_VALUE;
+        ArrayList<MidiEvent> events = new ArrayList<MidiEvent>(); // List of Notes
+        int max = Integer.MIN_VALUE; //Highest Note Value 
+        int min = Integer.MAX_VALUE; // Lowest Note Value
+        // Get Settings 
         Scanner set = new Scanner(new File("settings.txt"));
         String[] alternateInput = null;
         while (set.hasNextLine()) {
@@ -225,16 +230,20 @@ public class App {
             String[] content = line.split(Pattern.quote(" "));
             System.out.println(line + " " + content[0].trim());
             if (content[0].trim().equals(sonNam.trim())) {
-                System.out.println("FOUND INPUT");
+                System.out.println("FOUND INPUT in settings.txt");
                 alternateInput = content.clone();
                 break;
             }
         }
+        //if no settings are found. Turn off settings
         if (alternateInput == null) {
             System.out.println("No alternate input found in settings.txt");
             settings = false;
         }
         set.close();
+
+        //sets max and min values and adds notes to list of notes
+        //Also asks users for which tracks to keep if settings is off
         Track[] trac = sequence.getTracks();
         for (int i = 0; i < sequence.getTracks().length; i++) {
             int num = 0;
@@ -266,7 +275,6 @@ public class App {
                             ShortMessage sm = (ShortMessage) message;
                             if (sm.getCommand() == NOTE_ON && sm.getData2() > 100) {
     
-                                timestamps.add(event.getTick());
                                 events.add(event);
                                 max = Math.max(max, sm.getData1());
                                 min = Math.min(min, sm.getData1());
@@ -283,8 +291,9 @@ public class App {
                     System.out.println("Channel: " + sm.getChannel() + " " + instruments[sm.getData1()]);
                 }
 
-                System.out.print(" KEEP?");
-                if (in.nextInt() == 1) {
+                System.out.print(" KEEP? [Y/N]");
+                if (in.next().toLowerCase().charAt(0) == 'n') {
+                    System.out.println(" Keeping track");
                     sequence.deleteTrack(trac[i]);
                 } else {
                     for (int e = 0; e < trac[i].size(); e++) {
@@ -294,7 +303,6 @@ public class App {
                             ShortMessage sm = (ShortMessage) message;
                             if (sm.getCommand() == NOTE_ON && sm.getData2() > 100) {
 
-                                timestamps.add(event.getTick());
                                 events.add(event);
                                 max = Math.max(max, sm.getData1());
                                 min = Math.min(min, sm.getData1());
@@ -307,22 +315,26 @@ public class App {
 
             }
         }
+        // if there is no notes in the song
         if (max == Integer.MAX_VALUE){
             System.exit(-1);
         }
+
+        // ask arduino to initialize max and min values
         writeTOGPIO(max);
         setReset("1");
         Thread.sleep(50);
         writeTOGPIO(min);
         setReset("0");
 
+        //sorts notes by their timestamp
         Collections.sort(events, new compareA());
 
-        Collections.sort(timestamps);
         sequencer.start(); // start the playback
         int pointer = 0;
-
+        // Goes through all the notes in the song in order
         while (pointer < events.size()) {
+
             if (sequencer.getTickPosition() > events.get(pointer).getTick()) {
 
                 float keynum = ((ShortMessage) events.get(pointer).getMessage()).getData1();
@@ -332,6 +344,8 @@ public class App {
                 int totalOctive = (kkey / 12) - 1;
                 int totalNote = kkey % 12;
                 int keyCounted = 1;
+
+                //If the next note is on the same timestamp as the current note then Average all the notes together based on the octive and key
                 while (pointer + 1 < events.size() && events.get(pointer + 1).getTick() == curTICK) {
                     int ke = ((ShortMessage) events.get(pointer).getMessage()).getData1();
                     pointer++;
@@ -343,7 +357,9 @@ public class App {
                 int avNot = totalNote / keyCounted;
                 keynum = (avOct + 1) * 12 + avNot;
                 kkey = (int) keynum;
+                //Writes the key to the GPIO output
                 writeTOGPIO(kkey);
+                // Next Note
                 pointer++;
 
             }
@@ -351,6 +367,26 @@ public class App {
 
     }
 
+    /** <p>
+     * Sets the reset pin of the arduino
+     * <p>
+     * How to Use :
+     * <p>
+     *  1. Set GPIO using writeTOGPIO function to the either of the Max or Min Values
+     * <p>
+     *  2. Call Function to set to 1 
+     * <p>
+     *  3. Wait for Arduino to take in input and be ready
+     * <p>
+     *  4. Set GPIO using writeTOGPIO function to the min/max values you didn't use in the first step
+     * <p>
+     *  5. Call Function to set to 0
+     * 
+     * @param a Output of Pin 26
+     * @throws Exception
+     * 
+     * @see {@link #writeToGPIO(int)}
+     */
     public static void setReset(String a) throws Exception {
         runCmd("/home/pi/Desktop/sing/target/classes/cmd.sh", "26", a);
     }
@@ -373,6 +409,12 @@ public class App {
         }
     }
 
+    /**
+     * @deprecated Use {@link #writeTOGPIO(int)} instead
+     * <p> Writes a command file
+     * @param args
+     * @throws Exception
+     */
     public static void toggle(String args[]) throws Exception {
         PrintWriter out = new PrintWriter(com);
         out.println("#!/bin/sh");
@@ -382,7 +424,15 @@ public class App {
         out.close();
 
     }
-
+    
+    /**
+     * @deprecated Use {@link #writeTOGPIO(int)} instead
+     * <p> Writes a command file with GPIOO
+     * @param pin
+     * @param on
+     * @return
+     * @throws Exception
+     */
     public static File writeCommand(int pin, int on) throws Exception {
         File myObj = new File("cmdp" + pin + "o" + on + ".sh");
         if (myObj.createNewFile()) {
@@ -398,9 +448,14 @@ public class App {
         out.close();
         return myObj;
     }
-
-    static int[] gpioPOS = { 24, 23, 22, 17, 27, 5, 6 };
-
+    
+    static int[] gpioPOS = { 24, 23, 22, 17, 27, 5, 6 };// Positions of the pins for the numbers
+    /**
+     * <p>Writes a number to the gpio of the raspberry device by converting it to binary format
+     * @param num
+     * @return
+     * @throws Exception
+     */
     public static int writeTOGPIO(int num) throws Exception {
         if (num > 127) {
             return 0;
@@ -413,14 +468,14 @@ public class App {
         }
         return 1;
     }
-
+    // Converts to a 7 bit binary format 
     public static String getBin(int input) {
         String result = Integer.toBinaryString(input);
         String resultWithPadding = String.format("%7s", result).replaceAll(" ", "0"); // 32-bit Integer
         return resultWithPadding;
     }
 }
-
+// Sort by Timestamp ascending 
 class compareA implements Comparator<MidiEvent> {
 
     @Override
