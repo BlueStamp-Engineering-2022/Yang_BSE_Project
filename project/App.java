@@ -97,10 +97,6 @@ public class App {
                     sonNam = bin.get(choosen.toLowerCase());
                     break;
                 } else {
-<<<<<<< HEAD
-
-=======
->>>>>>> 3d2aa2e5bfb0500e717551383f9d411a9ce9128d
                     // System.out.println("STRING DIST");
                     String lowestDistElement = null;
                     int minDist = Integer.MAX_VALUE;
@@ -108,14 +104,8 @@ public class App {
                         String key = (String) mapElement.getKey();
 
                         int dist = editDist(key.substring(0, Math.min(choosen.length(), key.length()) - 1),
-<<<<<<< HEAD
-                                choosen.toLowerCase(),
-                                key.substring(0, Math.min(choosen.length(), key.length()) - 1).length(),
-                                choosen.length());
-=======
                                 choosen.toLowerCase()
                                 );
->>>>>>> 3d2aa2e5bfb0500e717551383f9d411a9ce9128d
                         //System.out.println("checking " + key + " " + dist);
 
                         if (dist == minDist) { // If the distance is equal
@@ -127,25 +117,12 @@ public class App {
                             while (offset <= breakCon && offset< 10) {// Slowly increase search parameters until one is found to be closer
 
                                 int n1dist = editDist(key.substring(0, Math.min(key.length(), offset)),
-<<<<<<< HEAD
-                                        choosen.toLowerCase(),
-                                        key.substring(0, Math.min(key.length(), offset)).length(),
-                                        choosen.length());
-
-                                int n2dist = editDist(
-                                        lowestDistElement.substring(0, Math.min(lowestDistElement.length(), offset)),
-                                        choosen.toLowerCase(),
-                                        lowestDistElement.substring(0, Math.min(lowestDistElement.length(), offset))
-                                                .length(),
-                                        choosen.length());
-=======
                                         choosen.toLowerCase()
                                         );
 
                                 int n2dist = editDist(
                                         lowestDistElement.substring(0, Math.min(lowestDistElement.length(), offset)),
                                         choosen.toLowerCase());
->>>>>>> 3d2aa2e5bfb0500e717551383f9d411a9ce9128d
                                 if (n1dist < n2dist) {
 
                                     minDist = n1dist;
@@ -569,46 +546,6 @@ public class App {
         return resultWithPadding;
     }
 
-<<<<<<< HEAD
-    static int min(int x, int y, int z) {
-        if (x <= y && x <= z)
-            return x;
-        if (y <= x && y <= z)
-            return y;
-        else
-            return z;
-    }
-
-    static int editDist(String str1, String str2, int m,
-            int n) {
-        // If first string is empty, the only option is to
-        // insert all characters of second string into first
-        if (m == 0)
-            return n;
-
-        // If second string is empty, the only option is to
-        // remove all characters of first string
-        if (n == 0)
-            return m;
-
-        // If last characters of two strings are same,
-        // nothing much to do. Ignore last characters and
-        // get count for remaining strings.
-        if (str1.charAt(m - 1) == str2.charAt(n - 1))
-            return editDist(str1, str2, m - 1, n - 1);
-
-        // If last characters are not same, consider all
-        // three operations on last character of first
-        // string, recursively compute minimum cost for all
-        // three operations and take minimum of three
-        // values.
-        return 1
-                + min(editDist(str1, str2, m, n - 1), // Insert
-                        editDist(str1, str2, m - 1, n), // Remove
-                        editDist(str1, str2, m - 1,
-                                n - 1) // Replace
-                );
-=======
 
     static int editDist(String x, String y) {
         int[][] dp = new int[x.length() + 1][y.length() + 1];
@@ -638,7 +575,6 @@ public class App {
     } public static int min(int... numbers) {
         return Arrays.stream(numbers)
           .min().orElse(Integer.MAX_VALUE);
->>>>>>> 3d2aa2e5bfb0500e717551383f9d411a9ce9128d
     }
 }
 
