@@ -96,28 +96,14 @@ public class App {
                     music += bin.get(choosen.toLowerCase()) + ".mid";
                     sonNam = bin.get(choosen.toLowerCase());
                     break;
-                }
-                ArrayList < Character   > list = new ArrayList< Character >();
-                for(int i = 0 ; i < choosen.length() ;i++){
-                    if( !list.contains( choosen.toLowerCase().charAt(i))){
-                        list.add(choosen.toLowerCase().charAt(i));
+                } else {
+                    ArrayList<Character> list = new ArrayList<Character>();
+                    for (int i = 0; i < choosen.length(); i++) {
+                        if (!list.contains(choosen.toLowerCase().charAt(i))) {
+                            list.add(choosen.toLowerCase().charAt(i));
+                        }
                     }
-                }
-                for (Map.Entry mapElement : bin.entrySet()) {
-                    String key = (String) mapElement.getKey();
-                    if( key.startsWith(choosen.toLowerCase())){
-                        
-                    System.out.println("Did you mean " + (String)mapElement.getValue() + "? [Y/N]");
-                    String response = in.next();
-                    if (response.toLowerCase().charAt(0) == 'y') {
-                        music += (String)mapElement.getValue() + ".mid";
-                        sonNam = (String)mapElement.getValue();
-                        break;
-                    }
-                    }
-                }
 
-                
                     // System.out.println("STRING DIST");
                     String lowestDistElement = null;
                     int minDist = Integer.MAX_VALUE;
@@ -125,19 +111,20 @@ public class App {
 
                         String key = (String) mapElement.getKey();
                         boolean noChr = true;
-                        for(int i = 0 ; i < list.size();i ++){
-                            for(int j = 0 ; j <key.length(); j ++){
-                                if( key.charAt(j) == list.get(i)){
-                                    noChr=false;
-                                    
+                        for (int i = 0; i < list.size(); i++) {
+                            for (int j = 0; j < key.length(); j++) {
+                                if (key.charAt(j) == list.get(i)) {
+                                    noChr = false;
+
                                     break;
 
                                 }
 
                             }
-                            if(!noChr)break;
+                            if (!noChr)
+                                break;
                         }
-                        if(noChr){
+                        if (noChr) {
                             System.out.println("IGNORING " + key);
                             continue;
                         }
@@ -145,7 +132,7 @@ public class App {
                                 choosen.toLowerCase(),
                                 key.substring(0, Math.min(choosen.length(), key.length()) - 1).length(),
                                 choosen.length());
-                        
+
                         System.out.println("checking " + key + " " + dist);
 
                         if (dist == minDist) { // If the distance is equal
@@ -154,7 +141,8 @@ public class App {
                             int offset = Math.min(lowestDistElement.length(), key.length());
 
                             int breakCon = Math.max(lowestDistElement.length(), key.length());
-                            while (offset <= breakCon && offset< 10) {// Slowly increase search parameters until one is found to be closer
+                            while (offset <= breakCon && offset < 10) {// Slowly increase search parameters until one is
+                                                                       // found to be closer
                                 System.out.println("iternation " + offset);
                                 int n1dist = editDist(key.substring(0, Math.min(key.length(), offset)),
                                         choosen.toLowerCase(),
@@ -172,11 +160,10 @@ public class App {
                                     minDist = n1dist;
                                     lowestDistElement = key;
                                     break;
-                                }else
-                                    if (n1dist > n2dist) {
+                                } else if (n1dist > n2dist) {
 
-                                        break;
-                                    }
+                                    break;
+                                }
                                 offset++;
                             }
                             if (dist < minDist) {
@@ -192,7 +179,7 @@ public class App {
                             lowestDistElement = key;
                         }
                     }
-                    if(minDist == Integer.MAX_VALUE){
+                    if (minDist == Integer.MAX_VALUE) {
                         System.out.println("No Letters Found");
                         continue;
                     }
@@ -205,7 +192,7 @@ public class App {
                     }
 
                     System.out.println("Your input wasn't interpreted correctly. Please try again.");
-                
+                }
             }
             while (true) {
                 System.out.print("Do you want to use settings file?[Y/N]:");
