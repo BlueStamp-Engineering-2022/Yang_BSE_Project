@@ -97,7 +97,10 @@ public class App {
                     sonNam = bin.get(choosen.toLowerCase());
                     break;
                 } else {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3d2aa2e5bfb0500e717551383f9d411a9ce9128d
                     // System.out.println("STRING DIST");
                     String lowestDistElement = null;
                     int minDist = Integer.MAX_VALUE;
@@ -105,9 +108,14 @@ public class App {
                         String key = (String) mapElement.getKey();
 
                         int dist = editDist(key.substring(0, Math.min(choosen.length(), key.length()) - 1),
+<<<<<<< HEAD
                                 choosen.toLowerCase(),
                                 key.substring(0, Math.min(choosen.length(), key.length()) - 1).length(),
                                 choosen.length());
+=======
+                                choosen.toLowerCase()
+                                );
+>>>>>>> 3d2aa2e5bfb0500e717551383f9d411a9ce9128d
                         //System.out.println("checking " + key + " " + dist);
 
                         if (dist == minDist) { // If the distance is equal
@@ -119,6 +127,7 @@ public class App {
                             while (offset <= breakCon && offset< 10) {// Slowly increase search parameters until one is found to be closer
 
                                 int n1dist = editDist(key.substring(0, Math.min(key.length(), offset)),
+<<<<<<< HEAD
                                         choosen.toLowerCase(),
                                         key.substring(0, Math.min(key.length(), offset)).length(),
                                         choosen.length());
@@ -129,6 +138,14 @@ public class App {
                                         lowestDistElement.substring(0, Math.min(lowestDistElement.length(), offset))
                                                 .length(),
                                         choosen.length());
+=======
+                                        choosen.toLowerCase()
+                                        );
+
+                                int n2dist = editDist(
+                                        lowestDistElement.substring(0, Math.min(lowestDistElement.length(), offset)),
+                                        choosen.toLowerCase());
+>>>>>>> 3d2aa2e5bfb0500e717551383f9d411a9ce9128d
                                 if (n1dist < n2dist) {
 
                                     minDist = n1dist;
@@ -552,6 +569,7 @@ public class App {
         return resultWithPadding;
     }
 
+<<<<<<< HEAD
     static int min(int x, int y, int z) {
         if (x <= y && x <= z)
             return x;
@@ -590,6 +608,37 @@ public class App {
                         editDist(str1, str2, m - 1,
                                 n - 1) // Replace
                 );
+=======
+
+    static int editDist(String x, String y) {
+        int[][] dp = new int[x.length() + 1][y.length() + 1];
+    
+        for (int i = 0; i <= x.length(); i++) {
+            for (int j = 0; j <= y.length(); j++) {
+                if (i == 0) {
+                    dp[i][j] = j;
+                }
+                else if (j == 0) {
+                    dp[i][j] = i;
+                }
+                else {
+                    dp[i][j] = min(dp[i - 1][j - 1] 
+                     + costOfSubstitution(x.charAt(i - 1), y.charAt(j - 1)), 
+                      dp[i - 1][j] + 1, 
+                      dp[i][j - 1] + 1);
+                }
+            }
+        }
+    
+        return dp[x.length()][y.length()];
+
+    }
+    public static int costOfSubstitution(char a, char b) {
+        return a == b ? 0 : 1;
+    } public static int min(int... numbers) {
+        return Arrays.stream(numbers)
+          .min().orElse(Integer.MAX_VALUE);
+>>>>>>> 3d2aa2e5bfb0500e717551383f9d411a9ce9128d
     }
 }
 
@@ -606,4 +655,3 @@ class compareA implements Comparator<MidiEvent> {
     }
 
 }
-
