@@ -14,7 +14,7 @@ My First Project was an Arduino Project which uses tilt sensors to activate a se
 [![Starter Project](https://i3.ytimg.com/vi/Dk8wo_IOyVo/maxresdefault.jpg)](https://www.youtube.com/watch?v=Dk8wo_IOyVo "Starter Project")
 
 # Final Milestone
-My final milestone is to make the robot Dance. I contacted a API called musixmatch to make it sing as well but they ghosted me so I used a digital music sheet file called mid to extract song data on a raspberry pi. Raspberry Pi sends signals to the arduino to configure it's max and mininu
+My final milestone is to make the robot Dance. I contacted a API called musixmatch to make it sing as well but they ghosted me so I used a digital music sheet file called mid to extract song data on a raspberry pi. Raspberry Pi sends signals to the arduino to configure it's max and min. Then sends the notes to the arduino for it to interpret. Which it does. 
 
 [![Final Milestone](https://i.ytimg.com/an_webp/wKM3nT-UjmI/mqdefault_6s.webp?du=3000&sqp=CLrN4ZYG&rs=AOn4CLBYtPqzMzsh6wESP_Ok66Wq9HJazg)](https://www.youtube.com/watch?v=wKM3nT-UjmI&feature=emb_logo "Final Milestone")
 
