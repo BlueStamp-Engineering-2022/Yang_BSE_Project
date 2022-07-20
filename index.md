@@ -14,9 +14,9 @@ My First Project was an Arduino Project which uses tilt sensors to activate a se
 [![Starter Project](https://i3.ytimg.com/vi/Dk8wo_IOyVo/maxresdefault.jpg)](https://www.youtube.com/watch?v=Dk8wo_IOyVo "Starter Project")
 
 # Final Milestone
-My final milestone is the increased reliability and accuracy of my robot. I ameliorated the sagging and fixed the reliability of the finger. As discussed in my second milestone, the arm sags because of weight. I put in a block of wood at the base to hold up the upper arm; this has reverberating positive effects throughout the arm. I also realized that the forearm was getting disconnected from the elbow servo’s horn because of the weight stress on the joint. Now, I make sure to constantly tighten the screws at that joint. 
+My final milestone is to make the robot Dance. I contacted a API called musixmatch to make it sing as well but they ghosted me so I used a digital music sheet file called mid to extract song data on a raspberry pi. Raspberry Pi sends signals to the arduino to configure it's max and mininu
 
-[![Final Milestone](https://user-images.githubusercontent.com/45927105/179842083-ef3b40f3-d992-46da-9539-45a3ffd8ea81.png)](https://www.youtube.com/watch?v=X8aslb3ss8c&feature=emb_logo "Second Milestone"){:target="_blank" rel="noopener"}
+[![Final Milestone](https://i.ytimg.com/an_webp/wKM3nT-UjmI/mqdefault_6s.webp?du=3000&sqp=CLrN4ZYG&rs=AOn4CLBYtPqzMzsh6wESP_Ok66Wq9HJazg)](https://www.youtube.com/watch?v=wKM3nT-UjmI&feature=emb_logo "Final Milestone"){:target="_blank" rel="noopener"}
 
 # Second Milestone
 My second milestone was just improving my robot. I replaced some of the nuts with nyloc nuts and then I also added a brace for the joint as when the arms move violently the platform moves violently.
