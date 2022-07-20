@@ -16,19 +16,19 @@ My First Project was an Arduino Project which uses tilt sensors to activate a se
 # Final Milestone
 My final milestone is to make the robot Dance. I contacted a API called musixmatch to make it sing as well but they ghosted me so I used a digital music sheet file called mid to extract song data on a raspberry pi. Raspberry Pi sends signals to the arduino to configure it's max and mininu
 
-[![Final Milestone](https://i.ytimg.com/an_webp/wKM3nT-UjmI/mqdefault_6s.webp?du=3000&sqp=CLrN4ZYG&rs=AOn4CLBYtPqzMzsh6wESP_Ok66Wq9HJazg)](https://www.youtube.com/watch?v=wKM3nT-UjmI&feature=emb_logo "Final Milestone"){:target="_blank" rel="noopener"}
+[![Final Milestone](https://i.ytimg.com/an_webp/wKM3nT-UjmI/mqdefault_6s.webp?du=3000&sqp=CLrN4ZYG&rs=AOn4CLBYtPqzMzsh6wESP_Ok66Wq9HJazg)](https://www.youtube.com/watch?v=wKM3nT-UjmI&feature=emb_logo "Final Milestone")
 
 # Second Milestone
 My second milestone was just improving my robot. I replaced some of the nuts with nyloc nuts and then I also added a brace for the joint as when the arms move violently the platform moves violently.
 
-[![Second Milestone](https://user-images.githubusercontent.com/45927105/179842083-ef3b40f3-d992-46da-9539-45a3ffd8ea81.png)](https://www.youtube.com/watch?v=X8aslb3ss8c&feature=emb_logo "Second Milestone"){:target="_blank" rel="noopener"}
+[![Second Milestone](https://user-images.githubusercontent.com/45927105/179842083-ef3b40f3-d992-46da-9539-45a3ffd8ea81.png)](https://www.youtube.com/watch?v=X8aslb3ss8c&feature=emb_logo "Second Milestone")
 
 # First Milestone
   
 The first milestone of this program is that I built a robot arm out of arduino and some servos. With a servo on the base to give side to side motion while havinging another 2 more servos on top to control the motions of the arm before another servo on the end of the arm to control the claws. I ran into some troubles when one of the parts I need got caught up in cleanup but I managed to 3D print the part and everything was and is meh.
 
 
-[![First Milestone](https://user-images.githubusercontent.com/45927105/179844386-833ccf42-198f-4863-a02e-193d91e29cbc.png)](https://www.youtube.com/watch?v=IZtO-BH21JM){:target="_blank" rel="noopener"}
+[![First Milestone](https://user-images.githubusercontent.com/45927105/179844386-833ccf42-198f-4863-a02e-193d91e29cbc.png)](https://www.youtube.com/watch?v=IZtO-BH21JM)
 
 Wiring
 
