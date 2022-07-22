@@ -3,7 +3,7 @@ A robot arm made using servos and a arduino.
 
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
-| Yi Yang Hsu | Monta Vista | Software Engineering | Incoming Junior
+| Yang | Monta Vista | Software Engineering | Incoming Junior
 
 ![Headstone Image](https://lh3.googleusercontent.com/pw/AM-JKLXysOBkOESotPYS05-Olmgc3HEteCySzUPQ-FgDP_vDeZr1e4Q2ZG--OfiP1qNANj3DTfY75-ocJwwii1MuN0SCYBX76sCUTyuxIFN9czCwtOFfxKTyHyXiSByTk2yIHEzXsUMraTjmYrpFoI2vOno=s903-no?authuser=0)
 
